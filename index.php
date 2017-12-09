@@ -4,15 +4,15 @@
 			$daysOfWeek=require('day.php');
 			if (isset($_GET['value'])) {
 				$myDate=DateTime::createFromFormat('Y-m-d', $_GET['value']);
-				
 			}
 		?>
 		<form metod="GET" action="index.php" >
 			<input type="date" name="value" value="<?php 
-			echo htmlspecialchars(date('Y-m-d'));
-			if (isset($myDate))
-			{
-			echo htmlspecialchars($myDate->format('Y-m-d'));
+			
+			if (isset($myDate)){
+				echo htmlspecialchars($myDate->format('Y-m-d'));
+			}else{
+				echo htmlspecialchars(date('Y-m-d'));
 			}?>">
 			<input type="submit" value="Узнать день недели">
 		</form>
