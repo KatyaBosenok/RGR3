@@ -1,12 +1,16 @@
 ﻿<html>
 	<body>
 		<?php	
+			$daysOfWeek=require('day.php');
 			if (isset($_GET['value'])) {
 				$myDate=DateTime::createFromFormat('Y-m-d', $_GET['value']);
+				
 			}
 		?>
 		<form metod="GET" action="index.php" >
-			<input type="date" name="value" value="<?php if (isset($myDate))
+			<input type="date" name="value" value="<?php 
+			echo htmlspecialchars(date('Y-m-d'));
+			if (isset($myDate))
 			{
 			echo htmlspecialchars($myDate->format('Y-m-d'));
 			}?>">
@@ -14,7 +18,8 @@
 		</form>
 		<?php
 			if (isset($myDate)){
-				echo $myDate->format('D');
+				$dayOfWeek=$myDate->format('D');
+				echo $daysOfWeek[$dayOfWeek];
 				$day=$myDate -> format('d');
 				if($day<=7){
 					Echo "  (первый раз в этом месяце)";
@@ -27,7 +32,6 @@
 				}else {
 					Echo "  (пятый раз в этом месяце)";
 				}
-
 			}
 		
 		?>
